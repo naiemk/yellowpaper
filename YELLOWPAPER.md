@@ -319,23 +319,25 @@ As long as there is at least one honest adversary in the pool, the new pool will
 
 #### Brief Analysis of The Security of Adversary Pools
 
-The most theoretically secure method for ensuring the security of adversary locked assets, is to lock the asset using a $q$ out of $n$ scheme, such that $q$ is 51% of the nodes of the Ferrum network, and $n$ is count of the nodes.
-In such case, at least half of the network should collude to steal any fund. This is an acceptable level of security, because generally in any decentralized network, if half of the nodes are malicious and willing to collude, they can even change the network protocol. They can destroy any decentralized network, and consequently loosing all their value. Hence, we consider such method than can only be broken by a $51%$ attack the golden standard of security.
+The most theoretically secure method for ensuring the security of adversary locked assets, is to lock the asset using a q out of n scheme, such that q is 51% of the nodes of the Ferrum network, and n is count of the nodes.
+In such case, at least half of the network should collude to steal any fund. This is an acceptable level of security, because generally in any decentralized network, if half of the nodes are malicious and willing to collude, they can even change the network protocol. They can destroy any decentralized network, and consequently loosing all their value. Hence, we consider such method than can only be broken by a 51% attack the golden standard of security.
 
-This method although being golden standard of security is not scalable. We propose that the security of a randomized algorithm can be compared in relation to the golden standard by comparing the sum of contributions from cops to value lock transactions over many events. For example if there are 5000 cops, and on average 5 cops are required per locked BTC, after 1000 transactions, in average every cop is involved in locking of 1 BTC. If we assume the  cop selection protocol is randomized, and the average amount of locked BTC remains 5000, over 1 million transactions we can assume every cop is involved in every BTC lock. The million transactions and locking and unlocking of the values takes some time *Lt*. If *Lt* approaches to zero, the lock / unlock mechanism approaches to the golden standard of security. Obviously it is impossible to run 1 million transactions in zero time.
+This method although being golden standard of security is not scalable. We propose that the security of a randomized algorithm can be compared in relation to the golden standard by comparing the sum of contributions from cops to value lock transactions over many events. For example if there are 5000 cops, and on average 5 cops are required per locked BTC, after 1000 transactions, in average every cop is involved in locking of 1 BTC. If we assume the  cop selection protocol is uniformly randomized, and the average amount of locked BTC remains 5000, after 1 million transactions, every cop is involved in every BTC lock. Running one million transactions and locking and unlocking of the values takes some time Lt. If Lt approaches to zero, the lock / unlock mechanism approaches to the golden standard of security. Obviously it is impossible to run one million transactions in zero time.
 
-The above though process can guide us through development of an economic model, that provides optimal number of cops per locked dollar value. Such model can have the following parameters. This is by no means an exhaustive number of parameters.
+The above though process can guide us through development of an economic model that provides optimal number of cops per locked dollar value. Such model can have the following parameters. This is by no means an exhaustive number of parameters.
 
 * The dollar cost of transaction: Every transaction has a cost, from energy used, or BTC and ETH transaction fees.
-* The dollar cost of being a cop: A cop needs to stay available almost 24/7 which has costs.
-* The dollar cost of collusion: Collusion and bad behavior has a non zero cost for cops. This is a parameter that we can adjust in the network.
+* The dollar cost of being a cop: A cop needs to stay available almost 24/7.
+* The dollar cost of collusion: Collusion and bad behavior has a non zero cost for cops. This is a parameter that we can adjust in the network. This is the cost for conducting the collusion such as finding other cops, etc.
 * The dollar profit from collusion: How much profit in average cops can get from collusion
 * The dollar cost of involving in a lock per cop per dollar value: The more cops are involved in a value lock the more costly the transaction will be.
 * Size of the network and number of cops.
 * Average size of the locked value.
-* Punishment for the colluding cops.
+* The probability that an honest cop is in a colluding group.
+* Punishment for the colluding group. Assuming we have no way of differentiating a colluding cop from an honest cop in a group that has stolen some value.
+* Whether it is possible to eliminate the colluding cops from future rounds.
 
-The loss function or the distance from the golden standard of security should be a function of the cost of running enough transaction such that the random variable of dollar value locked by a cop reaches the total locked value and the profit the can be made by colluding cops during this run.
+The loss function or the distance from the golden standard of security should be a function of the cost of running enough transaction such that the random variable of dollar value locked by a cop reaches the total locked value, and the profit that can be made by colluding cops during this run.
 
 In future works we develop such optimization models and publish the results of the study.
 
