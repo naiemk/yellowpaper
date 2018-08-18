@@ -418,6 +418,33 @@ To validating the contract outcome, validators run the following algorithm:
 - All who ran the contract sign the outcome, and point to their adversary pool.
 - Validator validates the correctness of adversary pool selection process, and the adversary pool formation process.
 
+## Performance Discussions in Relation to Decentralized Exchanges
+
+### Subgraph compression for high frequency applications
+
+Many applications require high number of transactions ran by a few actors such as trading bots or exchanges. 
+
+The current solution is something such as lightening network model to completely take transactions offline. 
+
+In Ferrum we have a better alternative to run off network transactions which is still on chain yet achieves similar off chain scale. This is possible because Ferrum's DAG structure allows a sub dag to be grown off chain. 
+
+For example an exchange that works with high frequency traders gets permission from trade accounts to run trades on their behalf. 
+
+#### Permission transactions:
+
+Traders must provide a permission transaction to the exchange that includes the following information: trader address, exchange address, optional lock time, amount, exchange matrix. Exchange matrix is a matrix of potential trades allowed by the trader such as ETH with EOS for 0.4 to 0.9
+If the exchange is malicious or hacked the most they can do is to exchange the funds within the permitted numbers. In the case of wild price fluctuation traders can submit new trade permissions or take some risk by giving open ended permissions to the exchange.
+
+#### Permissioned graph compression:
+
+An exchange can generate as many transactions as they wish supported by the permission transaction. We call this growing a sub graph. The exchange can then produces a compressed subgraph that only includes in and outs and produce the compressed subgraph with the grown sub graph to a note that supports subgraph compression. 
+
+The node will validate the subgraph and if it is satisfied with the validity of compression will pass it along.
+
+#### Graph compression
+
+The idea of graph compression is useful in general to compress the Ferrum's transaction history. A compressed sub-graph is similar to blockchain block headers but with the difference that these compressed sub-graphs are not constrained on the shape.
+
 ## Conclusion
 
 In this paper, we proposed *Ferrum* a decentralized network of nodes that can process high throughput cross-chain transactions. *Ferrum* uses a plugin mechanism and a protocol to see across chains. *Ferrum* also provides a set of specialized transactions that facilitate exchanges within the network, and across the network with external networks.
