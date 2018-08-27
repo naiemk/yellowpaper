@@ -210,6 +210,28 @@ Although Ferrum makes interaction between networks possible, the Ferrum spin-off
 
 Ferrum ultimately requires a highly scalable, distributed, and decentralized hash-map for storing data. The community is working to solve this problem. Projects such as *IPFS*, or *Bluzelle* [ref] are some examples. Therefore, Ferrum is designed with the replacability of the data layer in mind. We will replace the data layer with an appropriate technology once a fast, reliable, and mature option is available.
 
+### Address Name Resolution (ANR)
+Ferrum will natively support an address name resolution method and makes it available to every Ferrum client. By using ANR users can utilize human-readable addresses attached to actual Ferrum addresses. This means that users can assign a name to their address, and receive payments using their name. The name can point to a different address in future. 
+
+For example, a charity sets up a fund-raising address, such as `@pitbull-dog-rescue-usa`. In their pamphlets and advertisements, they can refer to their Ferrum payment address. We believe this feature is critical enough for usability improvements in the network that needs to be part of the network. 
+
+To submit a name registration, the user will submit an ANR transaction with the following fields:
+
+* Ferrum address
+* Address Name
+* Reference to previous ANR transaction for the same name
+* Metadata
+* Signature
+
+#### Address Name Verification
+
+The major challenge with using names is that scammer can turn its very best benefit, namely human readability, as a weapon by registering fake names that look and feel similar to the actual name. For example, a spammer can run a phishing campaign and collect money for `@pitbul1-dog-rescue-usa` (note the type). To prevent such attacks, we suggest the following verification technique. Although such verification will not be part of the Ferrum reference implementation, wallets and browsers can adapt it to fight fishing attacks and improve user security:
+
+* In the metadata, the user points to a verified website.
+* User submits a DNS TXT record as follows: `ferrum.address.verify.mydomain.com @pitbull-dog-rescue-usa=my-Ferrum-address`
+
+Wallets can then use a `nslookup` query to validate the owner of the address and show a link to the actual website plus testing it against the blacklists or whitelists to prevent impersonating others. By using above method many of existing anti-spam solutions can be applied to securing crypto payments. Obviously, the name verification is an optional feature and will not compromise privacy.
+
 
 ## Beyond Proof of Burn
 
